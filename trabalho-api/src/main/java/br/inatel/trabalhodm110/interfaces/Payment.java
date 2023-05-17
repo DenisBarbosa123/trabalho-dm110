@@ -10,7 +10,7 @@ public interface Payment
 	
 	public PaymentTO getPayment(Integer id);
 	
-	public PaymentTO updatePayment(Integer id, PaymentTO paymentTO);
+	public void updatePayment(Integer id, PaymentTO paymentTO);
 
 	public List<PaymentTO> getAllPayments();
 }

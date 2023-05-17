@@ -21,28 +21,28 @@ public class PaymentServiceImpl implements PaymentService
 	@Override
 	public void savePayment(PaymentTO paymentTO) 
 	{
-		log.info("Save payment");
+		log.info("Save payment " + paymentTO );
 		paymentBean.savePayment(paymentTO);
 	}
 
 	@Override
 	public PaymentTO getPayment(Integer id) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Get payment by Id " + id);
+		return paymentBean.getPayment(id);
 	}
 
 	@Override
-	public PaymentTO updatePayment(Integer id, PaymentTO paymentTO) 
+	public void updatePayment(Integer id, PaymentTO paymentTO) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Update payment " + id + paymentTO);
+		paymentBean.updatePayment(id, paymentTO);
 	}
 
 	@Override
 	public List<PaymentTO> getAllPayments() 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		log.info("Getting all payments");
+		return paymentBean.getAllPayments();
 	}
 }

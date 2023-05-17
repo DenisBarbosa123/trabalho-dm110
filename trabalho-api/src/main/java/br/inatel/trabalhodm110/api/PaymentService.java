@@ -27,7 +27,7 @@ public interface PaymentService {
 	@PATCH
 	@Path("/update/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public PaymentTO updatePayment(@PathParam("id") Integer id, PaymentTO paymentTO);
+	public void updatePayment(@PathParam("id") Integer id, PaymentTO paymentTO);
 
 	@GET
 	@Path("/getAll")
