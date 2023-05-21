@@ -41,6 +41,11 @@
   </build>
 
   <dependencies>
+  <dependency>
+			<groupId>br.inatel.dm110</groupId>
+			<artifactId>trabalho-mdb</artifactId>
+			<type>ejb</type>
+		</dependency>
 	<dependency>
 		  <groupId>br.inatel.dm110</groupId>
 		  <artifactId>trabalho-web</artifactId>
