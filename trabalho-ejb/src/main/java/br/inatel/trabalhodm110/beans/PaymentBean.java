@@ -3,6 +3,7 @@ package br.inatel.trabalhodm110.beans;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
@@ -20,6 +21,9 @@ public class PaymentBean implements PaymentLocal
 	@PersistenceContext(unitName = "payment_pu")
 	private EntityManager em;
 	
+	@EJB
+	private PaymentQueueSender queueSender;
+	
 	@Override
 	public void savePayment(PaymentTO paymentTO) 
 	{
@@ -30,12 +34,15 @@ public class PaymentBean implements PaymentLocal
 				.setValue(paymentTO.getValue())
 				.setPaymentType(paymentTO.getPaymentType());
 		em.persist(payment);
+		
+		queueSender.sendAudit(payment.getProductCode(), "create");
 	}
 
 	@Override
 	public PaymentTO getPayment(Integer id) 
 	{
 		Payment payment = em.find(Payment.class, id);
+		queueSender.sendAudit(id, "get");
 		return toPaymentTO(payment);
 	}
 
@@ -50,6 +57,8 @@ public class PaymentBean implements PaymentLocal
 		payment.setPaymentType(paymentTO.getPaymentType());
 		
 		em.merge(payment);
+		
+		queueSender.sendAudit(id, "update");
 	}
 
 	@Override
