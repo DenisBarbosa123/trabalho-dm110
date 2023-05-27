@@ -1,6 +1,7 @@
 package br.inatel.trabalhodm110.entities;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -28,6 +29,20 @@ public class Audit implements Serializable{
 	
 	@Column(name = "OPERATION")
 	private String operation;
+	
+	@Column(name = "TIME_STAMP")
+	private LocalDateTime timestamp;
+
+	public LocalDateTime getTimestamp()
+	{
+		return timestamp;
+	}
+
+	public Audit setTimestamp(LocalDateTime timestamp) 
+	{
+		this.timestamp = timestamp;
+		return this;
+	}
 
 	public int getRegisterCode() 
 	{

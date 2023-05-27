@@ -1,5 +1,7 @@
 package br.inatel.trabalhodm110.beans;
 
+import java.time.LocalDateTime;
+
 import javax.ejb.EJB;
 import javax.ejb.Local;
 import javax.ejb.Stateless;
@@ -21,10 +23,12 @@ public class AuditBean implements AuditLocal
 	private PaymentQueueSender queueSender;
 
 	@Override
-	public void saveAudit(AuditTO auditTO) {
+	public void saveAudit(AuditTO auditTO) 
+	{
 		Audit audit = new Audit()
 				.setRegisterCode(auditTO.getRegisterCode())
-				.setOperation(auditTO.getOperation());
+				.setOperation(auditTO.getOperation())
+				.setTimestamp(LocalDateTime.now());
 		em.persist(audit);
 	}
 }
